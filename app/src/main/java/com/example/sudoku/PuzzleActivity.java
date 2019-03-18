@@ -2,10 +2,12 @@ package com.example.sudoku;
 
 import android.content.Intent;
 import android.graphics.Point;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -111,6 +113,7 @@ public class PuzzleActivity extends AppCompatActivity {
 
         pointToId = Collections.unmodifiableMap(pointToIds);
     }
+    private PuzzleModel puzzleModel = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,11 +121,15 @@ public class PuzzleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_puzzle);
 
         Intent intent = getIntent();
-        PuzzleModel puzzle = intent.getParcelableExtra(MainActivity.PUZZLE_KEY);
+        puzzleModel = intent.getParcelableExtra(MainActivity.PUZZLE_KEY);
 
+        refreshText();
+    }
+
+    private void refreshText() {
         for (int y = 0; y < PuzzleModel.SUDOKU_SIZE; y++) {
             for (int x = 0; x < PuzzleModel.SUDOKU_SIZE; x++) {
-                findAndSet(x, y, puzzle);
+                findAndSet(x, y, puzzleModel);
             }
         }
     }
@@ -143,5 +150,35 @@ public class PuzzleActivity extends AppCompatActivity {
         } else {
             Log.d(MainActivity.LOG_MESSAGE, "Could not find View for ("+x+", "+y+")");
         }
+    }
+
+    public void selectCell(View view) {
+        final int highlight = 0xFF00FF00;
+        final int other = 0xFFFFFFFF;
+
+        setContentView(R.layout.activity_puzzle);
+        String tag = (String)view.getTag();
+        final int y = Integer.valueOf(new String(new char[] {tag.charAt(0)}));
+        final int x = Integer.valueOf(new String(new char[] {tag.charAt(1)}));
+
+        for (int ty = 0; ty < PuzzleModel.SUDOKU_SIZE; ty++) {
+            for (int tx = 0; tx < PuzzleModel.SUDOKU_SIZE; tx++) {
+                int tid = pointToId.get(new Point(x, y));
+                TextView text = (TextView)findViewById(tid);
+                if (tx == x && ty == y) {
+                    text.setBackgroundColor(highlight);
+                } else {
+                    text.setBackgroundColor(other);
+                }
+            }
+        }
+
+        refreshText();
+
+        TextView display = (TextView)findViewById(R.id.textView);
+        display.setText(tag);
+
+        ViewGroup group = (ViewGroup) findViewById(R.id.puzzleLayout);
+        group.invalidate();
     }
 }
