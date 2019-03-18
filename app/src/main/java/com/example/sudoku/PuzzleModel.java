@@ -11,6 +11,8 @@ public class PuzzleModel implements Parcelable {
         return data[y][x];
     }
 
+    public void setCell(int x, int y, int value) { data[y][x] = value; }
+
     @Override
     public int describeContents() {
         return 0;

@@ -2,16 +2,12 @@ package com.example.sudoku;
 
 import android.content.Intent;
 import android.graphics.Point;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -114,6 +110,8 @@ public class PuzzleActivity extends AppCompatActivity {
         pointToId = Collections.unmodifiableMap(pointToIds);
     }
     private PuzzleModel puzzleModel = null;
+    private int currentX = -1;
+    private int currentY = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,23 +151,27 @@ public class PuzzleActivity extends AppCompatActivity {
     }
 
     public void selectCell(View view) {
+        //TODO: find the colors from res/values/colors
         final int highlight = 0xFF00FF00;
         final int other = 0xFFFFFFFF;
 
         setContentView(R.layout.activity_puzzle);
         String tag = (String)view.getTag();
-        final int y = Integer.valueOf(new String(new char[] {tag.charAt(0)}));
-        final int x = Integer.valueOf(new String(new char[] {tag.charAt(1)}));
+        currentY = Integer.valueOf(new String(new char[] {tag.charAt(0)}));
+        currentX = Integer.valueOf(new String(new char[] {tag.charAt(1)}));
 
         for (int ty = 0; ty < PuzzleModel.SUDOKU_SIZE; ty++) {
             for (int tx = 0; tx < PuzzleModel.SUDOKU_SIZE; tx++) {
-                int tid = pointToId.get(new Point(x, y));
+                int tid = pointToId.get(new Point(tx, ty));
                 TextView text = (TextView)findViewById(tid);
-                if (tx == x && ty == y) {
+                if (tx == currentX && ty == currentY) {
+                    Log.d(MainActivity.LOG_MESSAGE, "Updated ("+tx+", "+ty+") highlighted");
                     text.setBackgroundColor(highlight);
                 } else {
+                    Log.d(MainActivity.LOG_MESSAGE, "Updated ("+tx+", "+ty+") bland");
                     text.setBackgroundColor(other);
                 }
+                text.invalidate();
             }
         }
 
@@ -180,5 +182,17 @@ public class PuzzleActivity extends AppCompatActivity {
 
         ViewGroup group = (ViewGroup) findViewById(R.id.puzzleLayout);
         group.invalidate();
+    }
+
+    public void updateValue(View view) {
+        setContentView(R.layout.activity_puzzle);
+        TextView textView = (TextView)view;
+
+        StringBuilder message = new StringBuilder();
+        message.append(((TextView) view).getText());
+        int newValue = Integer.valueOf(message.toString());
+        puzzleModel.setCell(currentX, currentY, newValue);
+
+        refreshText();
     }
 }

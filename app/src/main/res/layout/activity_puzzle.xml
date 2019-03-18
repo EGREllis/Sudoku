@@ -734,6 +734,75 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/sudokuDigit1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:onClick="updateValue"/>
+
+            <TextView
+                android:id="@+id/sudokuDigit2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:onClick="updateValue"/>
+
+            <TextView
+                android:id="@+id/sudokuDigit3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:onClick="updateValue"/>
+
+            <TextView
+                android:id="@+id/sudokuDigit4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4"
+                android:onClick="updateValue"/>
+
+            <TextView
+                android:id="@+id/sudokuDigit5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:onClick="updateValue"/>
+
+            <TextView
+                android:id="@+id/sudokuDigit6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6"
+                android:onClick="updateValue"/>
+
+            <TextView
+                android:id="@+id/sudokuDigit7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7"
+                android:onClick="updateValue"/>
+
+            <TextView
+                android:id="@+id/sudokuDigit8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8"
+                android:onClick="updateValue"/>
+
+            <TextView
+                android:id="@+id/sudokuDigit9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9"
+                android:onClick="updateValue"/>
         </TableRow>
 
     </TableLayout>
