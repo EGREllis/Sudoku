@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PuzzleActivity extends AppCompatActivity {
@@ -168,10 +169,8 @@ public class PuzzleActivity extends AppCompatActivity {
                 int tid = pointToId.get(new Point(tx, ty));
                 TextView text = (TextView)findViewById(tid);
                 if (tx == currentX && ty == currentY) {
-                    Log.d(MainActivity.LOG_MESSAGE, "Updated ("+tx+", "+ty+") highlighted");
                     text.setBackgroundColor(highlight);
                 } else {
-                    Log.d(MainActivity.LOG_MESSAGE, "Updated ("+tx+", "+ty+") bland");
                     text.setBackgroundColor(other);
                 }
                 text.invalidate();
@@ -191,7 +190,21 @@ public class PuzzleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_puzzle);
 
         int newValue = Integer.valueOf(new StringBuilder(((TextView)view).getText()).toString());
-        puzzleModel.setCell(currentX, currentY, newValue);
+        List<PuzzleModel.ValidationError> errors = puzzleModel.setCell(currentX, currentY, newValue);
+        TextView validationErrorView = findViewById(R.id.validationErrorDisplay);
+        if (validationErrorView != null) {
+            Log.d(MainActivity.LOG_MESSAGE, "Could not retrieve validation error display");
+        }
+        if (errors.size() > 0) {
+            StringBuilder errorMessage = new StringBuilder();
+            for (PuzzleModel.ValidationError error : errors) {
+                errorMessage.append(error).append("; ");
+            }
+            validationErrorView.setText(errorMessage.toString());
+            validationErrorView.invalidate();
+        } else {
+            validationErrorView.setText("");
+        }
 
         refreshText();
     }
