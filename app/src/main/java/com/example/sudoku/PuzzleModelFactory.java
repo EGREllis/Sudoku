@@ -16,6 +16,6 @@ public class PuzzleModelFactory {
                 {0, 0, 4, 6, 9, 0, 1, 7, 3},
                 {0, 0, 0, 0, 0, 1, 0, 0, 4}
         };
-        return new PuzzleModel(data);
+        return PuzzleModel.createPuzzleModelFromOriginalData(data);
     }
 }

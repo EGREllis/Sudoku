@@ -127,15 +127,15 @@ public class PuzzleActivity extends AppCompatActivity {
     private void refreshText() {
         for (int y = 0; y < PuzzleModel.SUDOKU_SIZE; y++) {
             for (int x = 0; x < PuzzleModel.SUDOKU_SIZE; x++) {
-                findAndSet(x, y, puzzleModel);
+                findAndSetText(x, y, puzzleModel);
             }
         }
     }
 
-    private void findAndSet(int x, int y, PuzzleModel puzzleModel) {
+    private void findAndSetText(int x, int y, PuzzleModel puzzleModel) {
         int id = pointToId.get(new Point(x, y));
-        View view = (View)findViewById(id);
-        if (view != null) {
+        TextView textView = (TextView)findViewById(id);
+        if (textView != null) {
             int value = puzzleModel.getCell(x, y);
                 String text;
                 if (value == 0) {
@@ -144,7 +144,10 @@ public class PuzzleActivity extends AppCompatActivity {
                     text = Integer.toString(value);
                 }
 
-                ((TextView) view).setText(text);
+                textView.setText(text);
+                if (puzzleModel.isOriginal(x, y)) {
+                    textView.setOnClickListener(null);
+                }
         } else {
             Log.d(MainActivity.LOG_MESSAGE, "Could not find View for ("+x+", "+y+")");
         }
@@ -180,17 +183,14 @@ public class PuzzleActivity extends AppCompatActivity {
         TextView display = (TextView)findViewById(R.id.textView);
         display.setText(tag);
 
-        ViewGroup group = (ViewGroup) findViewById(R.id.puzzleLayout);
+        ViewGroup group = (ViewGroup)findViewById(R.id.puzzleLayout);
         group.invalidate();
     }
 
     public void updateValue(View view) {
         setContentView(R.layout.activity_puzzle);
-        TextView textView = (TextView)view;
 
-        StringBuilder message = new StringBuilder();
-        message.append(((TextView) view).getText());
-        int newValue = Integer.valueOf(message.toString());
+        int newValue = Integer.valueOf(new StringBuilder(((TextView)view).getText()).toString());
         puzzleModel.setCell(currentX, currentY, newValue);
 
         refreshText();
