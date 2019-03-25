@@ -14,6 +14,9 @@ import java.util.Map;
 import java.util.Set;
 
 public class PuzzleActivity extends AppCompatActivity {
+    public static final String LOG_MESSAGE = "SUDOKU";
+    public static final String PUZZLE_KEY = "com.example.sudoku.PUZZLE";
+
     private static final Map<Point,Integer> pointToId;
     static {
         Map<Point,Integer> pointToIds = new HashMap<Point,Integer>();
@@ -118,8 +121,11 @@ public class PuzzleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_puzzle);
 
+        /*
         Intent intent = getIntent();
-        puzzleModel = intent.getParcelableExtra(MainActivity.PUZZLE_KEY);
+        puzzleModel = intent.getParcelableExtra(PUZZLE_KEY);
+        */
+        puzzleModel = new PuzzleModelFactory().createPuzzle();
 
         refreshText(Collections.<Point>emptySet());
     }
@@ -154,7 +160,7 @@ public class PuzzleActivity extends AppCompatActivity {
                     textView.setTextColor(0xFFFF0000); //Red
                 }
         } else {
-            Log.d(MainActivity.LOG_MESSAGE, "Could not find View for ("+x+", "+y+")");
+            Log.d(LOG_MESSAGE, "Could not find View for ("+x+", "+y+")");
         }
     }
 
