@@ -8,6 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +21,7 @@ import java.util.Set;
 
 public class PuzzleActivity extends AppCompatActivity {
     public static final String LOG_MESSAGE = "SUDOKU";
+    private static final String FILE_NAME = "sudoku.dat";
 
     private static final Map<Point,Integer> pointToId;
     static {
@@ -144,6 +151,56 @@ public class PuzzleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_puzzle);
         puzzleModel.reset();
         refreshText(Collections.<Point>emptySet());
+    }
+
+    public void savePuzzleClick(View view) {
+        setContentView(R.layout.activity_puzzle);
+
+        File sudokuFile = null;
+        ObjectOutputStream output = null;
+        try {
+            sudokuFile = new File(getApplicationContext().getFilesDir(), FILE_NAME);
+            output = new ObjectOutputStream(new FileOutputStream(sudokuFile));
+            output.writeObject(puzzleModel);
+        } catch (IOException ioe) {
+            throw new RuntimeException(ioe);
+        } finally {
+            refreshText(Collections.<Point>emptySet());
+            try {
+                if (output != null) {
+                    output.close();
+                }
+            } catch (Exception ioe) {
+                throw new RuntimeException(ioe);
+            }
+        }
+    }
+
+    public void loadPuzzleClick(View view) {
+        setContentView(R.layout.activity_puzzle);
+
+        File sudokuFile = null;
+        ObjectInputStream input = null;
+        try {
+            sudokuFile = new File(getApplicationContext().getFilesDir(), FILE_NAME);
+            if (sudokuFile != null && sudokuFile.exists()) {
+                input = new ObjectInputStream(new FileInputStream(sudokuFile));
+                puzzleModel = (PuzzleModel) input.readObject();
+            }
+        } catch (IOException ioe) {
+            throw new RuntimeException(ioe);
+        } catch (ClassNotFoundException cnfe) {
+            throw new RuntimeException(cnfe);
+        } finally {
+            refreshText(Collections.<Point>emptySet());
+            try {
+                if (input != null) {
+                    input.close();
+                }
+            } catch(IOException ioe) {
+                throw new RuntimeException(ioe);
+            }
+        }
     }
 
     private void findAndSetText(int x, int y, PuzzleModel puzzleModel, boolean isConflicted) {

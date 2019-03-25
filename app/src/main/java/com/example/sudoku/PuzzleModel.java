@@ -4,6 +4,10 @@ import android.graphics.Point;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -11,12 +15,27 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class PuzzleModel implements Parcelable {
+public class PuzzleModel implements Parcelable, Serializable {
     public static final int SUDOKU_SIZE = 9;        // Dont mess with this
     public static final int SUDOKU_SQUARES = 3;     // Dont mess with this
     private int data[][];
     private boolean original[][];
     private List<SetValidator> validators;
+
+    private void writeObject(ObjectOutputStream oos) throws IOException {
+        oos.writeObject(data);
+        oos.writeObject(original);
+    }
+
+    private void readObject(ObjectInputStream ois) throws IOException {
+        try {
+            this.data = (int[][]) ois.readObject();
+            this.original = (boolean[][])ois.readObject();
+            validators = newValidators();
+        } catch(ClassNotFoundException cnfe) {
+            throw new RuntimeException(cnfe);
+        }
+    }
 
     public boolean isOriginal(int x, int y) { return original[y][x]; }
 
@@ -90,7 +109,11 @@ public class PuzzleModel implements Parcelable {
     public PuzzleModel(int data[][], boolean original[][]) {
         this.data = data;
         this.original = original;
-        this.validators = new ArrayList<>(SUDOKU_SIZE*3);
+        this.validators = newValidators();
+    }
+
+    private List<SetValidator> newValidators() {
+        List<SetValidator> validators = new ArrayList<>(SUDOKU_SIZE*3);
 
         // Rows
         for (int y = 0; y < SUDOKU_SIZE; y++) {
@@ -122,6 +145,7 @@ public class PuzzleModel implements Parcelable {
                 validators.add(new SetValidator(squares));
             }
         }
+        return validators;
     }
 
     public Set<Point> validate(Point modified) {
@@ -148,7 +172,7 @@ public class PuzzleModel implements Parcelable {
         return new PuzzleModel(data, original);
     }
 
-    private class SetValidator {
+    private class SetValidator implements Serializable {
         private final Set<Point> points;
 
         private SetValidator(Set<Point> points) {
