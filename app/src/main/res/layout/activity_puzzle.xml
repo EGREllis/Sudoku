@@ -25,6 +25,45 @@
 
         <TableRow
             android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/new_puzzle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="newPuzzleClick"
+                android:text="@string/New_puzzle"
+                android:layout_span="9"/>
+
+            <Button
+                android:id="@+id/reset_puzzle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="resetPuzzleClick"
+                android:text="@string/Reset_puzzle"
+                android:layout_span="9"/>
+
+            <Button
+                android:id="@+id/store_puzzle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/Store_puzzle"
+                android:layout_span="9"/>
+
+            <Button
+                android:id="@+id/recall_puzzle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/Recall_puzzle"
+                android:layout_span="9"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
@@ -35,6 +74,7 @@
                 android:ems="1"
                 android:tag="00"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -46,6 +86,7 @@
                 android:ems="1"
                 android:tag="01"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -57,6 +98,7 @@
                 android:ems="1"
                 android:tag="02"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -68,6 +110,7 @@
                 android:ems="1"
                 android:tag="03"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -79,6 +122,7 @@
                 android:ems="1"
                 android:tag="04"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -90,6 +134,7 @@
                 android:ems="1"
                 android:tag="05"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -101,6 +146,7 @@
                 android:ems="1"
                 android:tag="06"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -112,6 +158,7 @@
                 android:ems="1"
                 android:tag="07"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -123,6 +170,7 @@
                 android:ems="1"
                 android:tag="08"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
         </TableRow>
@@ -138,6 +186,7 @@
                 android:gravity="center"
                 android:tag="10"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -148,6 +197,7 @@
                 android:gravity="center"
                 android:tag="11"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -158,6 +208,7 @@
                 android:gravity="center"
                 android:tag="12"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -168,6 +219,7 @@
                 android:gravity="center"
                 android:tag="13"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -178,6 +230,7 @@
                 android:gravity="center"
                 android:tag="14"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -188,6 +241,7 @@
                 android:gravity="center"
                 android:tag="15"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -198,6 +252,7 @@
                 android:gravity="center"
                 android:tag="16"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -208,6 +263,7 @@
                 android:gravity="center"
                 android:tag="17"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -218,6 +274,7 @@
                 android:gravity="center"
                 android:tag="18"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -234,6 +291,7 @@
                 android:gravity="center"
                 android:tag="20"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -244,6 +302,7 @@
                 android:gravity="center"
                 android:tag="21"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -254,6 +313,7 @@
                 android:gravity="center"
                 android:tag="22"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -264,6 +324,7 @@
                 android:gravity="center"
                 android:tag="23"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -274,6 +335,7 @@
                 android:gravity="center"
                 android:tag="24"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -284,6 +346,7 @@
                 android:gravity="center"
                 android:tag="25"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -294,6 +357,7 @@
                 android:gravity="center"
                 android:tag="26"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -304,6 +368,7 @@
                 android:gravity="center"
                 android:tag="27"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -314,6 +379,7 @@
                 android:gravity="center"
                 android:tag="28"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
         </TableRow>
@@ -329,6 +395,7 @@
                 android:gravity="center"
                 android:tag="30"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -339,6 +406,7 @@
                 android:gravity="center"
                 android:tag="31"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -349,6 +417,7 @@
                 android:gravity="center"
                 android:tag="32"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -359,6 +428,7 @@
                 android:gravity="center"
                 android:tag="33"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -369,6 +439,7 @@
                 android:gravity="center"
                 android:tag="34"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -379,6 +450,7 @@
                 android:gravity="center"
                 android:tag="35"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -389,6 +461,7 @@
                 android:gravity="center"
                 android:tag="36"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -399,6 +472,7 @@
                 android:gravity="center"
                 android:tag="37"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -409,6 +483,7 @@
                 android:gravity="center"
                 android:tag="38"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
         </TableRow>
@@ -424,6 +499,7 @@
                 android:gravity="center"
                 android:tag="40"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -434,6 +510,7 @@
                 android:gravity="center"
                 android:tag="41"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -444,6 +521,7 @@
                 android:gravity="center"
                 android:tag="42"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -454,6 +532,7 @@
                 android:gravity="center"
                 android:tag="43"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -464,6 +543,7 @@
                 android:gravity="center"
                 android:tag="44"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -474,6 +554,7 @@
                 android:gravity="center"
                 android:tag="45"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -484,6 +565,7 @@
                 android:gravity="center"
                 android:tag="46"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -494,6 +576,7 @@
                 android:gravity="center"
                 android:tag="47"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -504,6 +587,7 @@
                 android:gravity="center"
                 android:tag="48"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
         </TableRow>
@@ -519,6 +603,7 @@
                 android:gravity="center"
                 android:tag="50"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -529,6 +614,7 @@
                 android:gravity="center"
                 android:tag="51"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -539,6 +625,7 @@
                 android:gravity="center"
                 android:tag="52"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -549,6 +636,7 @@
                 android:gravity="center"
                 android:tag="53"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -559,6 +647,7 @@
                 android:gravity="center"
                 android:tag="54"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -569,6 +658,7 @@
                 android:gravity="center"
                 android:tag="55"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -579,6 +669,7 @@
                 android:gravity="center"
                 android:tag="56"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -589,6 +680,7 @@
                 android:gravity="center"
                 android:tag="57"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -599,6 +691,7 @@
                 android:gravity="center"
                 android:tag="58"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
         </TableRow>
@@ -614,6 +707,7 @@
                 android:gravity="center"
                 android:tag="60"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -624,6 +718,7 @@
                 android:gravity="center"
                 android:tag="61"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -634,6 +729,7 @@
                 android:gravity="center"
                 android:tag="62"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -644,6 +740,7 @@
                 android:gravity="center"
                 android:tag="63"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -654,6 +751,7 @@
                 android:gravity="center"
                 android:tag="64"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -664,6 +762,7 @@
                 android:gravity="center"
                 android:tag="65"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -674,6 +773,7 @@
                 android:gravity="center"
                 android:tag="66"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -684,6 +784,7 @@
                 android:gravity="center"
                 android:tag="67"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -694,6 +795,7 @@
                 android:gravity="center"
                 android:tag="68"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
         </TableRow>
@@ -709,6 +811,7 @@
                 android:gravity="center"
                 android:tag="70"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -719,6 +822,7 @@
                 android:gravity="center"
                 android:tag="71"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -729,6 +833,7 @@
                 android:gravity="center"
                 android:tag="72"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -739,6 +844,7 @@
                 android:gravity="center"
                 android:tag="73"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -749,6 +855,7 @@
                 android:gravity="center"
                 android:tag="74"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -759,6 +866,7 @@
                 android:gravity="center"
                 android:tag="75"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -769,6 +877,7 @@
                 android:gravity="center"
                 android:tag="76"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -779,6 +888,7 @@
                 android:gravity="center"
                 android:tag="77"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -789,6 +899,7 @@
                 android:gravity="center"
                 android:tag="78"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
         </TableRow>
@@ -804,6 +915,7 @@
                 android:gravity="center"
                 android:tag="80"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -814,6 +926,7 @@
                 android:gravity="center"
                 android:tag="81"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -824,6 +937,7 @@
                 android:gravity="center"
                 android:tag="82"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -834,6 +948,7 @@
                 android:gravity="center"
                 android:tag="83"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -844,6 +959,7 @@
                 android:gravity="center"
                 android:tag="84"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -854,6 +970,7 @@
                 android:gravity="center"
                 android:tag="85"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -864,6 +981,7 @@
                 android:gravity="center"
                 android:tag="86"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -874,6 +992,7 @@
                 android:gravity="center"
                 android:tag="87"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
 
@@ -884,6 +1003,7 @@
                 android:gravity="center"
                 android:tag="88"
                 android:onClick="selectCell"
+                android:layout_span="4"
                 android:background="@drawable/textview_border_layered"
                 />
         </TableRow>
@@ -898,6 +1018,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="1"
+                android:layout_span="4"
                 android:onClick="updateValue"/>
 
             <TextView
@@ -906,6 +1027,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="2"
+                android:layout_span="4"
                 android:onClick="updateValue"/>
 
             <TextView
@@ -914,6 +1036,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="3"
+                android:layout_span="4"
                 android:onClick="updateValue"/>
 
             <TextView
@@ -922,6 +1045,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="4"
+                android:layout_span="4"
                 android:onClick="updateValue"/>
 
             <TextView
@@ -930,6 +1054,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="5"
+                android:layout_span="4"
                 android:onClick="updateValue"/>
 
             <TextView
@@ -938,6 +1063,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="6"
+                android:layout_span="4"
                 android:onClick="updateValue"/>
 
             <TextView
@@ -946,6 +1072,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="7"
+                android:layout_span="4"
                 android:onClick="updateValue"/>
 
             <TextView
@@ -954,6 +1081,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="8"
+                android:layout_span="4"
                 android:onClick="updateValue"/>
 
             <TextView
@@ -962,6 +1090,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="9"
+                android:layout_span="4"
                 android:onClick="updateValue"/>
         </TableRow>
 

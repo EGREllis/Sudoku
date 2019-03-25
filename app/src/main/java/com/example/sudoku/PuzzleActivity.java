@@ -15,7 +15,6 @@ import java.util.Set;
 
 public class PuzzleActivity extends AppCompatActivity {
     public static final String LOG_MESSAGE = "SUDOKU";
-    public static final String PUZZLE_KEY = "com.example.sudoku.PUZZLE";
 
     private static final Map<Point,Integer> pointToId;
     static {
@@ -112,6 +111,7 @@ public class PuzzleActivity extends AppCompatActivity {
 
         pointToId = Collections.unmodifiableMap(pointToIds);
     }
+    private PuzzleModelFactory puzzleModelFactory = new PuzzleModelFactory();
     private PuzzleModel puzzleModel = null;
     private int currentX = -1;
     private int currentY = -1;
@@ -121,11 +121,7 @@ public class PuzzleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_puzzle);
 
-        /*
-        Intent intent = getIntent();
-        puzzleModel = intent.getParcelableExtra(PUZZLE_KEY);
-        */
-        puzzleModel = new PuzzleModelFactory().createPuzzle();
+        puzzleModel = puzzleModelFactory.createPuzzle();
 
         refreshText(Collections.<Point>emptySet());
     }
@@ -136,6 +132,18 @@ public class PuzzleActivity extends AppCompatActivity {
                 findAndSetText(x, y, puzzleModel, conflictPoints.contains(new Point(x, y)));
             }
         }
+    }
+
+    public void newPuzzleClick(View view) {
+        setContentView(R.layout.activity_puzzle);
+        puzzleModel = puzzleModelFactory.createPuzzle();
+        refreshText(Collections.<Point>emptySet());
+    }
+
+    public void resetPuzzleClick(View view) {
+        setContentView(R.layout.activity_puzzle);
+        puzzleModel.reset();
+        refreshText(Collections.<Point>emptySet());
     }
 
     private void findAndSetText(int x, int y, PuzzleModel puzzleModel, boolean isConflicted) {

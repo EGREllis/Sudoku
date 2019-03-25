@@ -5,5 +5,8 @@
     <string name="text_label">Type here</string>
     <string name="placeholder">This should never be seen</string>
 
-    <string name="new_puzzle">New puzzle</string>
+    <string name="New_puzzle">New</string>
+    <string name="Reset_puzzle">Reset</string>
+    <string name="Store_puzzle">Save</string>
+    <string name="Recall_puzzle">Load</string>
 </resources>

@@ -34,6 +34,16 @@ public class PuzzleModel implements Parcelable {
         return errors;
     }
 
+    public void reset() {
+        for (int y = 0; y < data.length; y++) {
+            for (int x = 0; x < data.length; x++) {
+                if (!original[y][x]) {
+                    data[y][x] = 0;
+                }
+            }
+        }
+    }
+
     @Override
     public int describeContents() {
         return 0;
