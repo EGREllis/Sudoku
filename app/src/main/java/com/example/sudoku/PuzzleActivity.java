@@ -6,12 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -163,7 +161,6 @@ public class PuzzleActivity extends AppCompatActivity {
     public void selectCell(View view) {
         //TODO: find the colors from res/values/colors
         final int highlight = 0xFF00FF00;
-        final int other = 0xFFFFFFFF;
 
         setContentView(R.layout.activity_puzzle);
         String tag = (String)view.getTag();
@@ -177,16 +174,13 @@ public class PuzzleActivity extends AppCompatActivity {
                 if (tx == currentX && ty == currentY) {
                     text.setBackgroundColor(highlight);
                 } else {
-                    text.setBackgroundColor(other);
+                    text.setBackgroundResource(R.drawable.textview_border_layered);
                 }
                 text.invalidate();
             }
         }
 
         refreshText(Collections.<Point>emptySet());
-
-        ViewGroup group = (ViewGroup)findViewById(R.id.puzzleLayout);
-        group.invalidate();
     }
 
     public void updateValue(View view) {
