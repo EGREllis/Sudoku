@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class PuzzleActivity extends AppCompatActivity {
     private static final Map<Point,Integer> pointToId;
@@ -122,18 +123,18 @@ public class PuzzleActivity extends AppCompatActivity {
         Intent intent = getIntent();
         puzzleModel = intent.getParcelableExtra(MainActivity.PUZZLE_KEY);
 
-        refreshText();
+        refreshText(Collections.<Point>emptySet());
     }
 
-    private void refreshText() {
+    private void refreshText(Set<Point> conflictPoints) {
         for (int y = 0; y < PuzzleModel.SUDOKU_SIZE; y++) {
             for (int x = 0; x < PuzzleModel.SUDOKU_SIZE; x++) {
-                findAndSetText(x, y, puzzleModel);
+                findAndSetText(x, y, puzzleModel, conflictPoints.contains(new Point(x, y)));
             }
         }
     }
 
-    private void findAndSetText(int x, int y, PuzzleModel puzzleModel) {
+    private void findAndSetText(int x, int y, PuzzleModel puzzleModel, boolean isConflicted) {
         int id = pointToId.get(new Point(x, y));
         TextView textView = (TextView)findViewById(id);
         if (textView != null) {
@@ -148,6 +149,11 @@ public class PuzzleActivity extends AppCompatActivity {
                 textView.setText(text);
                 if (puzzleModel.isOriginal(x, y)) {
                     textView.setOnClickListener(null);
+                } else {
+                    textView.setTextColor(0xFF000000); // Black
+                }
+                if (isConflicted) {
+                    textView.setTextColor(0xFFFF0000); //Red
                 }
         } else {
             Log.d(MainActivity.LOG_MESSAGE, "Could not find View for ("+x+", "+y+")");
@@ -177,7 +183,7 @@ public class PuzzleActivity extends AppCompatActivity {
             }
         }
 
-        refreshText();
+        refreshText(Collections.<Point>emptySet());
 
         ViewGroup group = (ViewGroup)findViewById(R.id.puzzleLayout);
         group.invalidate();
@@ -187,22 +193,7 @@ public class PuzzleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_puzzle);
 
         int newValue = Integer.valueOf(new StringBuilder(((TextView)view).getText()).toString());
-        List<PuzzleModel.ValidationError> errors = puzzleModel.setCell(currentX, currentY, newValue);
-        TextView validationErrorView = findViewById(R.id.validationErrorDisplay);
-        if (validationErrorView != null) {
-            Log.d(MainActivity.LOG_MESSAGE, "Could not retrieve validation error display");
-        }
-        if (errors.size() > 0) {
-            StringBuilder errorMessage = new StringBuilder();
-            for (PuzzleModel.ValidationError error : errors) {
-                errorMessage.append(error).append("; ");
-            }
-            validationErrorView.setText(errorMessage.toString());
-            validationErrorView.invalidate();
-        } else {
-            validationErrorView.setText("");
-        }
-
-        refreshText();
+        Set<Point> errors = puzzleModel.setCell(currentX, currentY, newValue);
+        refreshText(errors);
     }
 }

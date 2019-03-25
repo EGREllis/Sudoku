@@ -5,8 +5,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class PuzzleModel implements Parcelable {
@@ -22,10 +24,10 @@ public class PuzzleModel implements Parcelable {
         return data[y][x];
     }
 
-    public List<ValidationError> setCell(int x, int y, int value) {
+    public Set<Point> setCell(int x, int y, int value) {
         int previous = data[y][x];
         data[y][x] = value;
-        List<ValidationError> errors = validate();
+        Set<Point> errors = validate(new Point(x, y));
         if (errors.size() > 0) {
             data[y][x] = previous;
         }
@@ -86,7 +88,7 @@ public class PuzzleModel implements Parcelable {
             for (int x = 0; x < SUDOKU_SIZE; x++) {
                 row.add(new Point(x, y));
             }
-            validators.add(new SetValidator(row, y, ValidationErrorType.ROW));
+            validators.add(new SetValidator(row));
         }
 
         // Columns
@@ -95,7 +97,7 @@ public class PuzzleModel implements Parcelable {
             for (int y = 0; y < SUDOKU_SIZE; y++) {
                 col.add(new Point(x, y));
             }
-            validators.add(new SetValidator(col, x, ValidationErrorType.COLUMN));
+            validators.add(new SetValidator(col));
         }
 
         // Squares
@@ -107,16 +109,17 @@ public class PuzzleModel implements Parcelable {
                         squares.add(new Point(tx*SUDOKU_SQUARES+ix, ty*SUDOKU_SQUARES+iy));
                     }
                 }
-                validators.add(new SetValidator(squares,ty*SUDOKU_SQUARES+tx, ValidationErrorType.SQUARE));
+                validators.add(new SetValidator(squares));
             }
         }
     }
 
-    public List<ValidationError> validate() {
-        List<ValidationError> errors = new ArrayList<>();
+    public Set<Point> validate(Point modified) {
+        Set<Point> errors = new HashSet<>();
         for (SetValidator validator : validators) {
-            if (!validator.validate()) {
-                errors.add(new ValidationError(validator.type, validator.index));
+            Point conflictPoint = validator.validate(modified);
+            if (conflictPoint != null) {
+                errors.add(conflictPoint);
             }
         }
         return errors;
@@ -135,61 +138,31 @@ public class PuzzleModel implements Parcelable {
         return new PuzzleModel(data, original);
     }
 
-    public static enum ValidationErrorType {
-        ROW,
-        COLUMN,
-        SQUARE
-    }
-
-    public static class ValidationError {
-        public final ValidationErrorType type;
-        public final int index;
-
-        public ValidationError(ValidationErrorType type, int index) {
-            this.type = type;
-            this.index = index;
-        }
-
-        public ValidationErrorType getType() {
-            return type;
-        }
-
-        public int getIndex() {
-            return index;
-        }
-
-        @Override
-        public String toString() {
-            return String.format("%1$s %2$d", type, index);
-        }
-    }
-
     private class SetValidator {
         private final Set<Point> points;
-        private final int index;
-        private final ValidationErrorType type;
 
-        private SetValidator(Set<Point> points, int index, ValidationErrorType type) {
+        private SetValidator(Set<Point> points) {
             this.points = points;
-            this.index = index;
-            this.type = type;
         }
 
-        private boolean validate() {
-            Set<Integer> seen = new HashSet<Integer>();
-            boolean isValid = true;
+        private Point validate(Point modified) {
+            Map<Integer, Point> seen = new HashMap<>();
+            Point conflictPoint = null;
             for (Point point : points) {
                 int value = data[point.y][point.x];
                 if (value > 0) {
-                    if (seen.contains(value)) {
-                        isValid = false;
-                        break;
+                    if (seen.containsKey(value)) {
+                        if (point.equals(modified)) {
+                            conflictPoint = seen.get(value);
+                        } else {
+                            conflictPoint = point;
+                        }
                     } else {
-                        seen.add(value);
+                        seen.put(value, point);
                     }
                 }
             }
-            return isValid;
+            return conflictPoint;
         }
     }
 }
