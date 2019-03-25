@@ -179,9 +179,6 @@ public class PuzzleActivity extends AppCompatActivity {
 
         refreshText();
 
-        TextView display = (TextView)findViewById(R.id.textView);
-        display.setText(tag);
-
         ViewGroup group = (ViewGroup)findViewById(R.id.puzzleLayout);
         group.invalidate();
     }

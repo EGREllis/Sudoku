@@ -16,10 +16,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:stretchColumns="*"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
 
         <TableRow
             android:layout_width="match_parent"
@@ -27,83 +29,101 @@
 
             <TextView
                 android:id="@+id/textView00"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:ems="1"
                 android:tag="00"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:ems="1"
                 android:tag="01"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView02"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:ems="1"
                 android:tag="02"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView03"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:ems="1"
                 android:tag="03"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView04"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:ems="1"
                 android:tag="04"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView05"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:ems="1"
                 android:tag="05"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView06"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:ems="1"
                 android:tag="06"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView07"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:ems="1"
                 android:tag="07"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView08"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:ems="1"
                 android:tag="08"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
         </TableRow>
 
@@ -115,72 +135,90 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="10"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="11"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="12"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="13"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="14"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="15"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="16"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="17"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="18"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
         </TableRow>
@@ -193,72 +231,90 @@
                 android:id="@+id/textView20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="20"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="21"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="22"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView23"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="23"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="24"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="25"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView26"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="26"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView27"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="27"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView28"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="28"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
         </TableRow>
 
@@ -270,72 +326,90 @@
                 android:id="@+id/textView30"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="30"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView31"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="31"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView32"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="32"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView33"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="33"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView34"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="34"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView35"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="35"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView36"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="36"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView37"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="37"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView38"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="38"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
         </TableRow>
 
@@ -347,72 +421,90 @@
                 android:id="@+id/textView40"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="40"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView41"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="41"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView42"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="42"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView43"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="43"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView44"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="44"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView45"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="45"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView46"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="46"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView47"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="47"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView48"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="48"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
         </TableRow>
 
@@ -424,72 +516,90 @@
                 android:id="@+id/textView50"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="50"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView51"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="51"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView52"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="52"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView53"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="53"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView54"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="54"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView55"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="55"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView56"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="56"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView57"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="57"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView58"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="58"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
         </TableRow>
 
@@ -501,72 +611,90 @@
                 android:id="@+id/textView60"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="60"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView61"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="61"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView62"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="62"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView63"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="63"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView64"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="64"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView65"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="65"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView66"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="66"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView67"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="67"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView68"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="68"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
         </TableRow>
 
@@ -578,72 +706,90 @@
                 android:id="@+id/textView70"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="70"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView71"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="71"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView72"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="72"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView73"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="73"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView74"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="74"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView75"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="75"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView76"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="76"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView77"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="77"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView78"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="78"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
         </TableRow>
 
@@ -655,86 +801,91 @@
                 android:id="@+id/textView80"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="80"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView81"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="81"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView82"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="82"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView83"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="83"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView84"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="84"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView85"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="85"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView86"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="86"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView87"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="87"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
 
             <TextView
                 android:id="@+id/textView88"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:tag="88"
                 android:onClick="selectCell"
+                android:background="@drawable/textview_border_layered"
                 />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="" />
-
         </TableRow>
 
         <TableRow
@@ -745,6 +896,7 @@
                 android:id="@+id/sudokuDigit1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="1"
                 android:onClick="updateValue"/>
 
@@ -752,6 +904,7 @@
                 android:id="@+id/sudokuDigit2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="2"
                 android:onClick="updateValue"/>
 
@@ -759,6 +912,7 @@
                 android:id="@+id/sudokuDigit3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="3"
                 android:onClick="updateValue"/>
 
@@ -766,6 +920,7 @@
                 android:id="@+id/sudokuDigit4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="4"
                 android:onClick="updateValue"/>
 
@@ -773,6 +928,7 @@
                 android:id="@+id/sudokuDigit5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="5"
                 android:onClick="updateValue"/>
 
@@ -780,6 +936,7 @@
                 android:id="@+id/sudokuDigit6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="6"
                 android:onClick="updateValue"/>
 
@@ -787,6 +944,7 @@
                 android:id="@+id/sudokuDigit7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="7"
                 android:onClick="updateValue"/>
 
@@ -794,6 +952,7 @@
                 android:id="@+id/sudokuDigit8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="8"
                 android:onClick="updateValue"/>
 
@@ -801,6 +960,7 @@
                 android:id="@+id/sudokuDigit9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="9"
                 android:onClick="updateValue"/>
         </TableRow>
@@ -813,7 +973,9 @@
                 android:id="@+id/validationErrorDisplay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Validation errors" />
+                android:gravity="center"
+                android:text="Validation errors"
+                android:layout_span="9"/>
 
         </TableRow>
 
