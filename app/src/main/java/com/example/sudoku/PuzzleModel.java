@@ -58,6 +58,19 @@ public class PuzzleModel implements Parcelable, Serializable {
         return errors;
     }
 
+    public boolean isCompleted() {
+        boolean hasEmptyCell = false;
+        for (int y = 0; y < SUDOKU_SIZE; y++) {
+            for (int x = 0; x < SUDOKU_SIZE; x++) {
+                if (data[y][x] == 0) {
+                    hasEmptyCell = true;
+                    break;
+                }
+            }
+        }
+        return !hasEmptyCell;
+    }
+
     public void reset() {
         for (int y = 0; y < data.length; y++) {
             for (int x = 0; x < data.length; x++) {

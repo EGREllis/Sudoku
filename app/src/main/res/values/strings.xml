@@ -9,4 +9,5 @@
     <string name="Reset_puzzle">Reset</string>
     <string name="Store_puzzle">Save</string>
     <string name="Recall_puzzle">Load</string>
+    <string name="Mission_statement">Your work is not yet done</string>
 </resources>

@@ -266,6 +266,15 @@ public class PuzzleActivity extends AppCompatActivity {
 
         int newValue = Integer.valueOf( ((TextView)view).getText().toString() );
         Set<Point> errors = puzzleModel.setCell(currentX, currentY, newValue);
+        if (errors.size() == 0 && puzzleModel.isCompleted()) {
+            rewardTheMonkey();
+        }
         refreshText(errors);
+    }
+
+    private void rewardTheMonkey() {
+        TextView view = findViewById(R.id.monkeyReward);
+        view.setText("Congratulations!");
+        view.setTextColor(0xFF00FF00);  //TODO: get this from res/values/color
     }
 }

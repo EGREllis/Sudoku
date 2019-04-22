@@ -23,6 +23,20 @@ public class PuzzleModelFactory {
                 {0, 0, 4, 6, 9, 0, 1, 7, 3},
                 {0, 0, 0, 0, 0, 1, 0, 0, 4}
         };
-        return PuzzleModel.createPuzzleModelFromOriginalData(data);
+        int simple[][] = new int[][] {
+                {9, 8, 7, 6, 5, 4, 3, 2, 1},
+                {6, 5, 4, 3, 2, 1, 9, 8, 7},
+                {3, 2, 1, 9, 8, 7, 6, 5, 4},
+                {8, 7, 6, 5, 4, 3, 2, 1, 9},
+                {5, 4, 3, 2, 1, 9, 8, 7, 6},
+                {2, 1, 9, 8, 7, 6, 5, 4, 3},
+                {7, 6, 5, 4, 3, 2, 1, 9, 8},
+                {4, 3, 2, 1, 9, 8, 7, 6, 5},
+                {1, 9, 8, 7, 6, 5, 4, 3, 0}
+                //TODO: I expect customers would be "disappointed" with this puzzle
+        };
+        return Math.random() < 0.5 ?
+                PuzzleModel.createPuzzleModelFromOriginalData(data):
+                PuzzleModel.createPuzzleModelFromOriginalData(simple);
     }
 }
