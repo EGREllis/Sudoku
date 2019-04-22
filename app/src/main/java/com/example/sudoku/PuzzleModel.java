@@ -16,12 +16,17 @@ import java.util.Map;
 import java.util.Set;
 
 public class PuzzleModel implements Parcelable, Serializable {
-    public static final int SUDOKU_SIZE = 9;        // Dont mess with this
-    public static final int SUDOKU_SQUARES = 3;     // Dont mess with this
+    public static final int SUDOKU_SIZE = 9;        // A little messy - be careful if you mess with this
+    private static final int SUDOKU_SQUARES = 3;
+    private static final int VALIDATION_TYPES = 3;
     private int data[][];
     private boolean original[][];
     private List<SetValidator> validators;
 
+    /* There is a really long class comment on android.os.Parcel that describes why that class
+     * is not intended to serialise objects even though it can flatten and unflatten them.
+     *
+     * Could be an interesting interview question in the future, but for now its just an inconvenience */
     private void writeObject(ObjectOutputStream oos) throws IOException {
         oos.writeObject(data);
         oos.writeObject(original);
@@ -113,7 +118,7 @@ public class PuzzleModel implements Parcelable, Serializable {
     }
 
     private List<SetValidator> newValidators() {
-        List<SetValidator> validators = new ArrayList<>(SUDOKU_SIZE*3);
+        List<SetValidator> validators = new ArrayList<>(SUDOKU_SIZE*VALIDATION_TYPES);
 
         // Rows
         for (int y = 0; y < SUDOKU_SIZE; y++) {

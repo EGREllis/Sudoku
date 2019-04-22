@@ -1,6 +1,5 @@
 package com.example.sudoku;
 
-import android.content.Intent;
 import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +22,10 @@ public class PuzzleActivity extends AppCompatActivity {
     public static final String LOG_MESSAGE = "SUDOKU";
     private static final String FILE_NAME = "sudoku.dat";
 
+    /*
+        I wish there were a cleaner way to do this.  But if you have to have filth, collect it in one place...
+        ... the next two statements are the "outhouse"
+     */
     private static final Map<Point,Integer> pointToId;
     static {
         Map<Point,Integer> pointToIds = new HashMap<Point,Integer>();
@@ -156,7 +159,7 @@ public class PuzzleActivity extends AppCompatActivity {
     public void savePuzzleClick(View view) {
         setContentView(R.layout.activity_puzzle);
 
-        File sudokuFile = null;
+        File sudokuFile;
         ObjectOutputStream output = null;
         try {
             sudokuFile = new File(getApplicationContext().getFilesDir(), FILE_NAME);
@@ -171,7 +174,8 @@ public class PuzzleActivity extends AppCompatActivity {
                     output.close();
                 }
             } catch (Exception ioe) {
-                throw new RuntimeException(ioe);
+                //TODO: This seems a little absurd but if we get here, what should we do?
+                Log.e(LOG_MESSAGE, String.format("Exception inside finally!\n%1$s", ioe.getMessage()));
             }
         }
     }
@@ -179,11 +183,11 @@ public class PuzzleActivity extends AppCompatActivity {
     public void loadPuzzleClick(View view) {
         setContentView(R.layout.activity_puzzle);
 
-        File sudokuFile = null;
+        File sudokuFile;
         ObjectInputStream input = null;
         try {
             sudokuFile = new File(getApplicationContext().getFilesDir(), FILE_NAME);
-            if (sudokuFile != null && sudokuFile.exists()) {
+            if (sudokuFile.exists()) {
                 input = new ObjectInputStream(new FileInputStream(sudokuFile));
                 puzzleModel = (PuzzleModel) input.readObject();
             }
@@ -198,14 +202,15 @@ public class PuzzleActivity extends AppCompatActivity {
                     input.close();
                 }
             } catch(IOException ioe) {
-                throw new RuntimeException(ioe);
+                //TODO: This seems a little absurd but if we get here, what should we do?
+                Log.e(LOG_MESSAGE, String.format("Exception inside finally!\n%1$s", ioe.getMessage()));
             }
         }
     }
 
     private void findAndSetText(int x, int y, PuzzleModel puzzleModel, boolean isConflicted) {
         int id = pointToId.get(new Point(x, y));
-        TextView textView = (TextView)findViewById(id);
+        TextView textView = findViewById(id);
         if (textView != null) {
             int value = puzzleModel.getCell(x, y);
                 String text;
@@ -219,13 +224,15 @@ public class PuzzleActivity extends AppCompatActivity {
                 if (puzzleModel.isOriginal(x, y)) {
                     textView.setOnClickListener(null);
                 } else {
+                    //TODO Get these colours from res/values/colours
                     textView.setTextColor(0xFF000000); // Black
                 }
                 if (isConflicted) {
+                    //TODO Get these colours from res/values/colours
                     textView.setTextColor(0xFFFF0000); //Red
                 }
         } else {
-            Log.d(LOG_MESSAGE, "Could not find View for ("+x+", "+y+")");
+            throw new RuntimeException(String.format("Could not find view for ( %1$d, %2$d )", x, y));
         }
     }
 
@@ -241,7 +248,7 @@ public class PuzzleActivity extends AppCompatActivity {
         for (int ty = 0; ty < PuzzleModel.SUDOKU_SIZE; ty++) {
             for (int tx = 0; tx < PuzzleModel.SUDOKU_SIZE; tx++) {
                 int tid = pointToId.get(new Point(tx, ty));
-                TextView text = (TextView)findViewById(tid);
+                TextView text = findViewById(tid);
                 if (tx == currentX && ty == currentY) {
                     text.setBackgroundColor(highlight);
                 } else {
@@ -257,7 +264,7 @@ public class PuzzleActivity extends AppCompatActivity {
     public void updateValue(View view) {
         setContentView(R.layout.activity_puzzle);
 
-        int newValue = Integer.valueOf(new StringBuilder(((TextView)view).getText()).toString());
+        int newValue = Integer.valueOf( ((TextView)view).getText().toString() );
         Set<Point> errors = puzzleModel.setCell(currentX, currentY, newValue);
         refreshText(errors);
     }
