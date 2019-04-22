@@ -224,12 +224,10 @@ public class PuzzleActivity extends AppCompatActivity {
                 if (puzzleModel.isOriginal(x, y)) {
                     textView.setOnClickListener(null);
                 } else {
-                    //TODO Get these colours from res/values/colours
-                    textView.setTextColor(0xFF000000); // Black
+                    textView.setTextColor(Colours.ORIGINAL_TEXT); // Black
                 }
                 if (isConflicted) {
-                    //TODO Get these colours from res/values/colours
-                    textView.setTextColor(0xFFFF0000); //Red
+                    textView.setTextColor(Colours.CONFLICT_TEXT); //Red
                 }
         } else {
             throw new RuntimeException(String.format("Could not find view for ( %1$d, %2$d )", x, y));
@@ -237,9 +235,6 @@ public class PuzzleActivity extends AppCompatActivity {
     }
 
     public void selectCell(View view) {
-        //TODO: find the colors from res/values/colors
-        final int highlight = 0xFF00FF00;
-
         setContentView(R.layout.activity_puzzle);
         String tag = (String)view.getTag();
         currentY = Integer.valueOf(new String(new char[] {tag.charAt(0)}));
@@ -250,7 +245,7 @@ public class PuzzleActivity extends AppCompatActivity {
                 int tid = pointToId.get(new Point(tx, ty));
                 TextView text = findViewById(tid);
                 if (tx == currentX && ty == currentY) {
-                    text.setBackgroundColor(highlight);
+                    text.setBackgroundColor(Colours.HIGHLIGHT);
                 } else {
                     text.setBackgroundResource(R.drawable.textview_border_layered);
                 }
@@ -275,6 +270,6 @@ public class PuzzleActivity extends AppCompatActivity {
     private void rewardTheMonkey() {
         TextView view = findViewById(R.id.monkeyReward);
         view.setText("Congratulations!");
-        view.setTextColor(0xFF00FF00);  //TODO: get this from res/values/color
+        view.setTextColor(Colours.CELEBRATE_TEXT);
     }
 }
