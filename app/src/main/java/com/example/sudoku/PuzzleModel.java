@@ -190,6 +190,10 @@ public class PuzzleModel implements Parcelable, Serializable {
         return new PuzzleModel(data, original);
     }
 
+    /**
+     * Because each variation of validation is "Entries in these cells are empty or unique"
+     * Then there isn't much point in making three classes to do the same thing
+     */
     private class SetValidator implements Serializable {
         private final Set<Point> points;
 

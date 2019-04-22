@@ -174,8 +174,7 @@ public class PuzzleActivity extends AppCompatActivity {
                     output.close();
                 }
             } catch (Exception ioe) {
-                //TODO: This seems a little absurd but if we get here, what should we do?
-                Log.e(LOG_MESSAGE, String.format("Exception inside finally!\n%1$s", ioe.getMessage()));
+                requiredButExcessiveExceptionHandling(ioe);
             }
         }
     }
@@ -202,8 +201,7 @@ public class PuzzleActivity extends AppCompatActivity {
                     input.close();
                 }
             } catch(IOException ioe) {
-                //TODO: This seems a little absurd but if we get here, what should we do?
-                Log.e(LOG_MESSAGE, String.format("Exception inside finally!\n%1$s", ioe.getMessage()));
+                requiredButExcessiveExceptionHandling(ioe);
             }
         }
     }
@@ -271,5 +269,15 @@ public class PuzzleActivity extends AppCompatActivity {
         TextView view = findViewById(R.id.monkeyReward);
         view.setText("Congratulations!");
         view.setTextColor(Colours.CELEBRATE_TEXT);
+    }
+
+    // This method is for "catching" exceptions in finally blocks.
+    private static void requiredButExcessiveExceptionHandling(Exception e) {
+        StackTraceElement[] elements = Thread.getAllStackTraces().get(Thread.currentThread());
+        StringBuilder manualStackTrace = new StringBuilder();
+        for (StackTraceElement element : elements) {
+            manualStackTrace.append(String.format("\tFile: %1$s\tClass: %2$d\tMethod: %3$s\tLine: %4$d\n", element.getFileName(), element.getClassName(), element.getMethodName(), element.getLineNumber()));
+        }
+        Log.e(LOG_MESSAGE, String.format("Exception inside finally!\n%1$s\n$2$s", e.getMessage(), manualStackTrace));
     }
 }
