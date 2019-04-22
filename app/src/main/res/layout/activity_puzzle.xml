@@ -25,7 +25,8 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            style="?android:attr/buttonBarStyle">
 
             <Button
                 android:id="@+id/new_puzzle"
@@ -34,7 +35,8 @@
                 android:layout_weight="1"
                 android:onClick="newPuzzleClick"
                 android:text="@string/New_puzzle"
-                android:layout_span="9"/>
+                android:layout_span="9"
+                style="?android:attr/buttonBarButtonStyle"/>
 
             <Button
                 android:id="@+id/reset_puzzle"
@@ -43,7 +45,8 @@
                 android:layout_weight="1"
                 android:onClick="resetPuzzleClick"
                 android:text="@string/Reset_puzzle"
-                android:layout_span="9"/>
+                android:layout_span="9"
+                style="?android:attr/buttonBarButtonStyle"/>
 
             <Button
                 android:id="@+id/store_puzzle"
@@ -52,7 +55,8 @@
                 android:layout_weight="1"
                 android:onClick="savePuzzleClick"
                 android:text="@string/Store_puzzle"
-                android:layout_span="9"/>
+                android:layout_span="9"
+                style="?android:attr/buttonBarButtonStyle"/>
 
             <Button
                 android:id="@+id/recall_puzzle"
@@ -61,7 +65,8 @@
                 android:layout_weight="1"
                 android:onClick="loadPuzzleClick"
                 android:text="@string/Recall_puzzle"
-                android:layout_span="9"/>
+                android:layout_span="9"
+                style="?android:attr/buttonBarButtonStyle"/>
         </TableRow>
 
         <TableRow
