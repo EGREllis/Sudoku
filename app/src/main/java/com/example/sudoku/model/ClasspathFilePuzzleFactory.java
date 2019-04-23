@@ -1,9 +1,5 @@
 package com.example.sudoku.model;
 
-//import android.util.Log;
-
-import com.example.sudoku.PuzzleActivity;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -41,8 +37,8 @@ public class ClasspathFilePuzzleFactory implements PuzzleFactory {
             Matcher headerMatcher = HEADER_PATTERN.matcher(header);
             if (headerMatcher.matches()) {
                 nLines = Integer.valueOf(headerMatcher.group(1));
-                debug(String.format("Classpath sudoku reader says %1$d puzzles", nLines));
                 int randomPuzzle = (int)(Math.random()*1.0*nLines);
+                debug(String.format("Loading puzzle %1$d of %2$d", randomPuzzle,  nLines));
                 for (int currentPuzzle = 0; currentPuzzle < randomPuzzle; currentPuzzle++) {
                     reader.readLine();  //Skip the lines we don't care about
                 }
@@ -66,6 +62,7 @@ public class ClasspathFilePuzzleFactory implements PuzzleFactory {
                         data[y][x] = value;
                     }
                     result = Puzzle.createPuzzleModelFromOriginalData(data);
+                    debug(String.format("Loaded puzzle %1$d of %2$d", randomPuzzle, nLines));
                 } else {
                     debug(String.format("Failed to parse puzzle data (puzzle %1$d): %2$s", nLines, puzzleText));
                 }

@@ -6,8 +6,8 @@ public class HardcodedPuzzleFactory implements PuzzleFactory {
          * This is a cheat - need more than one puzzle!
          *
          * Upgrades:
-         * 1) Randomly get a puzzle from a set of hardcoded puzzles
-         * 2) Randomly get a puzzle from a file
+         * 1) Randomly get a puzzle from a set of hardcoded puzzles !DONE
+         * 2) Randomly get a puzzle from a file                     !DONE
          * 3) Randomly generate a solveable sudoku (not sure how feasible this is on an old phone
          *                                          or even a new one, but be able to honestly market
          *                                          "every available sudoku puzzle" has an appeal)
