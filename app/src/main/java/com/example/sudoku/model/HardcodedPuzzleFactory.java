@@ -1,7 +1,7 @@
-package com.example.sudoku;
+package com.example.sudoku.model;
 
-public class PuzzleModelFactory {
-    public PuzzleModel createPuzzle() {
+public class HardcodedPuzzleFactory implements PuzzleFactory {
+    public Puzzle createPuzzle() {
         /**
          * This is a cheat - need more than one puzzle!
          *
@@ -36,7 +36,7 @@ public class PuzzleModelFactory {
                 //TODO: I expect customers would be "disappointed" with this puzzle
         };
         return Math.random() < 0.5 ?
-                PuzzleModel.createPuzzleModelFromOriginalData(data):
-                PuzzleModel.createPuzzleModelFromOriginalData(simple);
+                Puzzle.createPuzzleModelFromOriginalData(data):
+                Puzzle.createPuzzleModelFromOriginalData(simple);
     }
 }

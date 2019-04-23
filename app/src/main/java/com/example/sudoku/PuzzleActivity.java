@@ -7,6 +7,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.sudoku.model.ClasspathFilePuzzleFactory;
+import com.example.sudoku.model.PuzzleFactory;
+import com.example.sudoku.model.Puzzle;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -18,8 +22,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import static com.example.sudoku.Util.debug;
+import static com.example.sudoku.Util.requiredButExcessiveExceptionHandling;
+
 public class PuzzleActivity extends AppCompatActivity {
-    public static final String LOG_MESSAGE = "SUDOKU";
     private static final String FILE_NAME = "sudoku.dat";
 
     /*
@@ -121,8 +127,9 @@ public class PuzzleActivity extends AppCompatActivity {
 
         pointToId = Collections.unmodifiableMap(pointToIds);
     }
-    private PuzzleModelFactory puzzleModelFactory = new PuzzleModelFactory();
-    private PuzzleModel puzzleModel = null;
+    //private PuzzleFactory puzzleModelFactory = new HardcodedPuzzleFactory();
+    private PuzzleFactory puzzleModelFactory = new ClasspathFilePuzzleFactory();
+    private Puzzle puzzle = null;
     private int currentX = -1;
     private int currentY = -1;
 
@@ -131,28 +138,29 @@ public class PuzzleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_puzzle);
 
-        puzzleModel = puzzleModelFactory.createPuzzle();
+        puzzle = puzzleModelFactory.createPuzzle();
+        debug(String.format("Plain text puzzle: %1$s", puzzle));
 
         refreshText(Collections.<Point>emptySet());
     }
 
     private void refreshText(Set<Point> conflictPoints) {
-        for (int y = 0; y < PuzzleModel.SUDOKU_SIZE; y++) {
-            for (int x = 0; x < PuzzleModel.SUDOKU_SIZE; x++) {
-                findAndSetText(x, y, puzzleModel, conflictPoints.contains(new Point(x, y)));
+        for (int y = 0; y < Puzzle.SUDOKU_SIZE; y++) {
+            for (int x = 0; x < Puzzle.SUDOKU_SIZE; x++) {
+                findAndSetText(x, y, puzzle, conflictPoints.contains(new Point(x, y)));
             }
         }
     }
 
     public void newPuzzleClick(View view) {
         setContentView(R.layout.activity_puzzle);
-        puzzleModel = puzzleModelFactory.createPuzzle();
+        puzzle = puzzleModelFactory.createPuzzle();
         refreshText(Collections.<Point>emptySet());
     }
 
     public void resetPuzzleClick(View view) {
         setContentView(R.layout.activity_puzzle);
-        puzzleModel.reset();
+        puzzle.reset();
         refreshText(Collections.<Point>emptySet());
     }
 
@@ -164,7 +172,7 @@ public class PuzzleActivity extends AppCompatActivity {
         try {
             sudokuFile = new File(getApplicationContext().getFilesDir(), FILE_NAME);
             output = new ObjectOutputStream(new FileOutputStream(sudokuFile));
-            output.writeObject(puzzleModel);
+            output.writeObject(puzzle);
         } catch (IOException ioe) {
             throw new RuntimeException(ioe);
         } finally {
@@ -188,7 +196,7 @@ public class PuzzleActivity extends AppCompatActivity {
             sudokuFile = new File(getApplicationContext().getFilesDir(), FILE_NAME);
             if (sudokuFile.exists()) {
                 input = new ObjectInputStream(new FileInputStream(sudokuFile));
-                puzzleModel = (PuzzleModel) input.readObject();
+                puzzle = (Puzzle) input.readObject();
             }
         } catch (IOException ioe) {
             throw new RuntimeException(ioe);
@@ -206,11 +214,11 @@ public class PuzzleActivity extends AppCompatActivity {
         }
     }
 
-    private void findAndSetText(int x, int y, PuzzleModel puzzleModel, boolean isConflicted) {
+    private void findAndSetText(int x, int y, Puzzle puzzle, boolean isConflicted) {
         int id = pointToId.get(new Point(x, y));
         TextView textView = findViewById(id);
         if (textView != null) {
-            int value = puzzleModel.getCell(x, y);
+            int value = puzzle.getCell(x, y);
                 String text;
                 if (value == 0) {
                     text = " ";
@@ -219,7 +227,7 @@ public class PuzzleActivity extends AppCompatActivity {
                 }
 
                 textView.setText(text);
-                if (puzzleModel.isOriginal(x, y)) {
+                if (puzzle.isOriginal(x, y)) {
                     textView.setOnClickListener(null);
                 } else {
                     textView.setTextColor(Colours.ORIGINAL_TEXT); // Black
@@ -238,8 +246,8 @@ public class PuzzleActivity extends AppCompatActivity {
         currentY = Integer.valueOf(new String(new char[] {tag.charAt(0)}));
         currentX = Integer.valueOf(new String(new char[] {tag.charAt(1)}));
 
-        for (int ty = 0; ty < PuzzleModel.SUDOKU_SIZE; ty++) {
-            for (int tx = 0; tx < PuzzleModel.SUDOKU_SIZE; tx++) {
+        for (int ty = 0; ty < Puzzle.SUDOKU_SIZE; ty++) {
+            for (int tx = 0; tx < Puzzle.SUDOKU_SIZE; tx++) {
                 int tid = pointToId.get(new Point(tx, ty));
                 TextView text = findViewById(tid);
                 if (tx == currentX && ty == currentY) {
@@ -258,8 +266,8 @@ public class PuzzleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_puzzle);
 
         int newValue = Integer.valueOf( ((TextView)view).getText().toString() );
-        Set<Point> errors = puzzleModel.setCell(currentX, currentY, newValue);
-        if (errors.size() == 0 && puzzleModel.isCompleted()) {
+        Set<Point> errors = puzzle.setCell(currentX, currentY, newValue);
+        if (errors.size() == 0 && puzzle.isCompleted()) {
             rewardTheMonkey();
         }
         refreshText(errors);
@@ -269,15 +277,5 @@ public class PuzzleActivity extends AppCompatActivity {
         TextView view = findViewById(R.id.monkeyReward);
         view.setText("Congratulations!");
         view.setTextColor(Colours.CELEBRATE_TEXT);
-    }
-
-    // This method is for "catching" exceptions in finally blocks.
-    private static void requiredButExcessiveExceptionHandling(Exception e) {
-        StackTraceElement[] elements = Thread.getAllStackTraces().get(Thread.currentThread());
-        StringBuilder manualStackTrace = new StringBuilder();
-        for (StackTraceElement element : elements) {
-            manualStackTrace.append(String.format("\tFile: %1$s\tClass: %2$d\tMethod: %3$s\tLine: %4$d\n", element.getFileName(), element.getClassName(), element.getMethodName(), element.getLineNumber()));
-        }
-        Log.e(LOG_MESSAGE, String.format("Exception inside finally!\n%1$s\n$2$s", e.getMessage(), manualStackTrace));
     }
 }

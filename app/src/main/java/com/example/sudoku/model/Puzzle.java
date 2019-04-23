@@ -1,4 +1,4 @@
-package com.example.sudoku;
+package com.example.sudoku.model;
 
 import android.graphics.Point;
 import android.os.Parcel;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class PuzzleModel implements Parcelable, Serializable {
+public class Puzzle implements Parcelable, Serializable {
     public static final int SUDOKU_SIZE = 9;        // A little messy - be careful if you mess with this
     private static final int SUDOKU_SQUARES = 3;
     private static final int VALIDATION_TYPES = 3;
@@ -82,6 +82,17 @@ public class PuzzleModel implements Parcelable, Serializable {
     }
 
     @Override
+    public String toString() {
+        StringBuilder message = new StringBuilder();
+        for (int y = 0; y < SUDOKU_SIZE; y++) {
+            for (int x = 0; x < SUDOKU_SIZE; x++) {
+                message.append(data[y][x]).append(x == SUDOKU_SIZE ? "\n" : "");
+            }
+        }
+        return message.toString();
+    }
+
+    @Override
     public int describeContents() {
         return 0;
     }
@@ -98,8 +109,8 @@ public class PuzzleModel implements Parcelable, Serializable {
         }
     }
 
-    public static Parcelable.Creator<PuzzleModel> CREATOR = new Parcelable.Creator<PuzzleModel>() {
-        public PuzzleModel createFromParcel(Parcel in) {
+    public static Parcelable.Creator<Puzzle> CREATOR = new Parcelable.Creator<Puzzle>() {
+        public Puzzle createFromParcel(Parcel in) {
             int data[][] = new int[SUDOKU_SIZE][];
             boolean original[][] = new boolean[SUDOKU_SIZE][];
             for (int y = 0; y < data.length; y++) {
@@ -116,15 +127,15 @@ public class PuzzleModel implements Parcelable, Serializable {
                 original[y] = new boolean[SUDOKU_SIZE];
                 in.readBooleanArray(original[y]);
             }
-            return new PuzzleModel(data, original);
+            return new Puzzle(data, original);
         }
 
-        public PuzzleModel[] newArray(int size) {
-            return new PuzzleModel[size];
+        public Puzzle[] newArray(int size) {
+            return new Puzzle[size];
         }
     };
 
-    public PuzzleModel(int data[][], boolean original[][]) {
+    public Puzzle(int data[][], boolean original[][]) {
         this.data = data;
         this.original = original;
         this.validators = newValidators();
@@ -177,7 +188,7 @@ public class PuzzleModel implements Parcelable, Serializable {
         return errors;
     }
 
-    public static PuzzleModel createPuzzleModelFromOriginalData(int data[][]) {
+    public static Puzzle createPuzzleModelFromOriginalData(int data[][]) {
         boolean[][] original = new boolean[SUDOKU_SIZE][];
         for (int y = 0; y < SUDOKU_SIZE; y++) {
             original[y] = new boolean[SUDOKU_SIZE];
@@ -187,7 +198,7 @@ public class PuzzleModel implements Parcelable, Serializable {
                 original[y][x] = data[y][x] != 0;
             }
         }
-        return new PuzzleModel(data, original);
+        return new Puzzle(data, original);
     }
 
     /**
