@@ -4,5 +4,5 @@
     <item
         android:drawable="@drawable/textview_border_light" />
     <item
-        android:drawable="@drawable/textview_border_inset" />
+        android:drawable="@drawable/textview_border_inset_dark" />
 </layer-list>
