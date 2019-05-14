@@ -3,6 +3,9 @@ package com.example.sudoku;
 import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,12 +19,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static com.example.sudoku.Util.debug;
 import static com.example.sudoku.Util.requiredButExcessiveExceptionHandling;
 
 public class PuzzleActivity extends AppCompatActivity {
@@ -33,7 +37,7 @@ public class PuzzleActivity extends AppCompatActivity {
      */
     private static final Map<Point,Integer> pointToId;
     static {
-        Map<Point,Integer> pointToIds = new HashMap<Point,Integer>();
+        Map<Point,Integer> pointToIds = new HashMap<>();
         pointToIds.put(new Point(0, 0), R.id.textView00);
         pointToIds.put(new Point(1, 0), R.id.textView01);
         pointToIds.put(new Point(2, 0), R.id.textView02);
@@ -130,6 +134,34 @@ public class PuzzleActivity extends AppCompatActivity {
     private Puzzle puzzle = null;
     private int currentX = -1;
     private int currentY = -1;
+    private final List<Entry> history = new ArrayList<>();
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.game_menu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch(menuItem.getItemId()) {
+            case R.id.undo_puzzle:
+                undoPuzzle();
+                break;
+            case R.id.new_puzzle:
+                newPuzzle();
+                break;
+            case R.id.reset_puzzle:
+                resetPuzzle();
+                break;
+            case R.id.save_puzzle:
+                savePuzzle();
+                break;
+            case R.id.load_puzzle:
+                loadPuzzle();
+                break;
+        }
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,19 +181,33 @@ public class PuzzleActivity extends AppCompatActivity {
         }
     }
 
-    public void newPuzzleClick(View view) {
+    public void undoPuzzle() {
+        setContentView(R.layout.activity_puzzle);
+
+        if (history.size() > 0) {
+            int lastIndex = history.size()-1;
+            Entry last = history.get(lastIndex);
+            puzzle.setCell(last.point.x, last.point.y, 0);
+            history.remove(lastIndex);
+
+            refreshText(Collections.<Point>emptySet());
+        }
+    }
+
+    public void newPuzzle() {
         setContentView(R.layout.activity_puzzle);
         puzzle = puzzleModelFactory.createPuzzle();
+        history.clear();
         refreshText(Collections.<Point>emptySet());
     }
 
-    public void resetPuzzleClick(View view) {
+    public void resetPuzzle() {
         setContentView(R.layout.activity_puzzle);
         puzzle.reset();
         refreshText(Collections.<Point>emptySet());
     }
 
-    public void savePuzzleClick(View view) {
+    public void savePuzzle() {
         setContentView(R.layout.activity_puzzle);
 
         File sudokuFile;
@@ -184,7 +230,7 @@ public class PuzzleActivity extends AppCompatActivity {
         }
     }
 
-    public void loadPuzzleClick(View view) {
+    public void loadPuzzle() {
         setContentView(R.layout.activity_puzzle);
 
         File sudokuFile;
@@ -264,8 +310,11 @@ public class PuzzleActivity extends AppCompatActivity {
 
         int newValue = Integer.valueOf( ((TextView)view).getText().toString() );
         Set<Point> errors = puzzle.setCell(currentX, currentY, newValue);
-        if (errors.size() == 0 && puzzle.isCompleted()) {
-            rewardTheMonkey();
+        if (errors.size() == 0) {
+            history.add(new Entry (new Point(currentX, currentY), newValue));
+            if (puzzle.isCompleted()) {
+                rewardTheMonkey();
+            }
         }
         refreshText(errors);
     }
@@ -274,5 +323,15 @@ public class PuzzleActivity extends AppCompatActivity {
         TextView view = findViewById(R.id.monkeyReward);
         view.setText("Congratulations!");
         view.setTextColor(Colours.CELEBRATE_TEXT);
+    }
+
+    private static class Entry {
+        private final Point point;
+        private final int value;
+
+        private Entry(Point point, int value) {
+            this.point = point;
+            this.value = value;
+        }
     }
 }

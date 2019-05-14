@@ -3,4 +3,6 @@
     <item android:id="@+id/undo_puzzle" android:title="@string/Undo_puzzle"></item>
     <item android:id="@+id/new_puzzle" android:title="@string/New_puzzle"></item>
     <item android:id="@+id/reset_puzzle" android:title="@string/Reset_puzzle"></item>
+    <item android:id="@+id/save_puzzle" android:title="@string/Store_puzzle"></item>
+    <item android:id="@+id/load_puzzle" android:title="@string/Recall_puzzle"></item>
 </menu>
