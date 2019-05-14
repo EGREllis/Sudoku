@@ -594,6 +594,16 @@
                     android:weightSum="3">
 
                     <TextView
+                        android:id="@+id/textView53"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/textview_border_layered"
+                        android:gravity="center"
+                        android:onClick="selectCell"
+                        android:layout_weight="1"
+                        android:tag="53" />
+
+                    <TextView
                         android:id="@+id/textView54"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -612,16 +622,6 @@
                         android:onClick="selectCell"
                         android:layout_weight="1"
                         android:tag="55" />
-
-                    <TextView
-                        android:id="@+id/textView53"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/textview_border_layered"
-                        android:gravity="center"
-                        android:onClick="selectCell"
-                        android:layout_weight="1"
-                        android:tag="53" />
                 </TableRow>
 
             </TableLayout>
@@ -712,14 +712,14 @@
                     android:weightSum="3">
 
                     <TextView
-                        android:id="@+id/textView58"
+                        android:id="@+id/textView56"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/textview_border_layered"
                         android:gravity="center"
                         android:onClick="selectCell"
                         android:layout_weight="1"
-                        android:tag="58" />
+                        android:tag="56" />
 
                     <TextView
                         android:id="@+id/textView57"
@@ -732,14 +732,14 @@
                         android:tag="57" />
 
                     <TextView
-                        android:id="@+id/textView56"
+                        android:id="@+id/textView58"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/textview_border_layered"
                         android:gravity="center"
                         android:onClick="selectCell"
                         android:layout_weight="1"
-                        android:tag="56" />
+                        android:tag="58" />
                 </TableRow>
 
             </TableLayout>
