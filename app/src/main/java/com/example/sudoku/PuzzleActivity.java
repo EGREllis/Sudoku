@@ -126,7 +126,6 @@ public class PuzzleActivity extends AppCompatActivity {
 
         pointToId = Collections.unmodifiableMap(pointToIds);
     }
-    //private PuzzleFactory puzzleModelFactory = new HardcodedPuzzleFactory();
     private PuzzleFactory puzzleModelFactory = new ClasspathFilePuzzleFactory();
     private Puzzle puzzle = null;
     private int currentX = -1;
@@ -138,7 +137,6 @@ public class PuzzleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_puzzle);
 
         puzzle = puzzleModelFactory.createPuzzle();
-        debug(String.format("Plain text puzzle: %1$s", puzzle));
 
         refreshText(Collections.<Point>emptySet());
     }
