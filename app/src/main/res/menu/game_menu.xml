@@ -5,4 +5,5 @@
     <item android:id="@+id/reset_puzzle" android:title="@string/Reset_puzzle"></item>
     <item android:id="@+id/save_puzzle" android:title="@string/Store_puzzle"></item>
     <item android:id="@+id/load_puzzle" android:title="@string/Recall_puzzle"></item>
+    <item android:id="@+id/assisted_mode" android:title="@string/Assisted_mode"></item>
 </menu>

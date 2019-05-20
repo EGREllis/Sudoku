@@ -11,4 +11,7 @@
     <string name="Recall_puzzle">Load</string>
     <string name="Mission_statement">Your work is not yet done</string>
     <string name="Undo_puzzle">Undo</string>
+    <string name="Assisted_mode">Easy mode</string>
+    <string name="Assisted_mode_on">Easy mode enabled</string>
+    <string name="Assisted_mode_off">Easy mode disabled</string>
 </resources>

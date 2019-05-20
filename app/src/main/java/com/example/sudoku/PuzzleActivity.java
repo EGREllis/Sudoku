@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.sudoku.model.ClasspathFilePuzzleFactory;
@@ -22,6 +23,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -36,7 +38,20 @@ public class PuzzleActivity extends AppCompatActivity {
         ... the next two statements are the "outhouse"
      */
     private static final Map<Point,Integer> pointToId;
+    private static final Map<Integer, Integer> buttonId;
     static {
+        Map<Integer,Integer> buttonIds = new HashMap<>();
+        buttonIds.put(1, R.id.sudokuDigit1);
+        buttonIds.put(2, R.id.sudokuDigit2);
+        buttonIds.put(3, R.id.sudokuDigit3);
+        buttonIds.put(4, R.id.sudokuDigit4);
+        buttonIds.put(5, R.id.sudokuDigit5);
+        buttonIds.put(6, R.id.sudokuDigit6);
+        buttonIds.put(7, R.id.sudokuDigit7);
+        buttonIds.put(8, R.id.sudokuDigit8);
+        buttonIds.put(9, R.id.sudokuDigit9);
+        buttonId = Collections.unmodifiableMap(buttonIds);
+
         Map<Point,Integer> pointToIds = new HashMap<>();
         pointToIds.put(new Point(0, 0), R.id.textView00);
         pointToIds.put(new Point(1, 0), R.id.textView01);
@@ -135,6 +150,7 @@ public class PuzzleActivity extends AppCompatActivity {
     private int currentX = -1;
     private int currentY = -1;
     private final List<Entry> history = new ArrayList<>();
+    private boolean easyMode = false;
 
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -144,6 +160,9 @@ public class PuzzleActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         switch(menuItem.getItemId()) {
+            case R.id.assisted_mode:
+                toggleEasyMode();
+                break;
             case R.id.undo_puzzle:
                 undoPuzzle();
                 break;
@@ -170,7 +189,24 @@ public class PuzzleActivity extends AppCompatActivity {
 
         puzzle = puzzleModelFactory.createPuzzle();
 
-        refreshText(Collections.<Point>emptySet());
+        refresh(Collections.<Point>emptySet());
+    }
+
+    private void refresh(Set<Point> conflictPoints) {
+        if (easyMode) {
+            refreshEasyModeButtons();
+        }
+        refreshEasyModeText();
+        refreshText(conflictPoints);
+    }
+
+    private void refreshEasyModeText() {
+        TextView easyModeText = findViewById(R.id.easyModeView);
+        if (easyMode) {
+            easyModeText.setText(getText(R.string.Assisted_mode_on));
+        } else {
+            easyModeText.setText(getText(R.string.Assisted_mode_off));
+        }
     }
 
     private void refreshText(Set<Point> conflictPoints) {
@@ -179,6 +215,33 @@ public class PuzzleActivity extends AppCompatActivity {
                 findAndSetText(x, y, puzzle, conflictPoints.contains(new Point(x, y)));
             }
         }
+    }
+
+    public void toggleEasyMode() {
+        this.easyMode = !easyMode;
+        refresh(Collections.<Point>emptySet());
+    }
+
+    private void refreshEasyModeButtons() {
+        setContentView(R.layout.activity_puzzle);
+        int currentValue = puzzle.getCell(currentX, currentY);
+
+        for (int value : new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9}) {
+            TextView textView = findViewById(buttonId.get(value));
+            if (puzzle.setCell(currentX, currentY, value).size() > 0) {
+                textView.setOnClickListener(null);
+                textView.setTextColor(Colours.CONFLICT_TEXT);
+            } else {
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        PuzzleActivity.this.updateValue(v);
+                    }
+                });
+                textView.setTextColor(Colours.ORIGINAL_TEXT);
+            }
+        }
+        puzzle.setCell(currentX, currentY, currentValue);
     }
 
     public void undoPuzzle() {
@@ -190,7 +253,7 @@ public class PuzzleActivity extends AppCompatActivity {
             puzzle.setCell(last.point.x, last.point.y, 0);
             history.remove(lastIndex);
 
-            refreshText(Collections.<Point>emptySet());
+            refresh(Collections.<Point>emptySet());
         }
     }
 
@@ -198,13 +261,13 @@ public class PuzzleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_puzzle);
         puzzle = puzzleModelFactory.createPuzzle();
         history.clear();
-        refreshText(Collections.<Point>emptySet());
+        refresh(Collections.<Point>emptySet());
     }
 
     public void resetPuzzle() {
         setContentView(R.layout.activity_puzzle);
         puzzle.reset();
-        refreshText(Collections.<Point>emptySet());
+        refresh(Collections.<Point>emptySet());
     }
 
     public void savePuzzle() {
@@ -219,7 +282,7 @@ public class PuzzleActivity extends AppCompatActivity {
         } catch (IOException ioe) {
             throw new RuntimeException(ioe);
         } finally {
-            refreshText(Collections.<Point>emptySet());
+            refresh(Collections.<Point>emptySet());
             try {
                 if (output != null) {
                     output.close();
@@ -246,7 +309,7 @@ public class PuzzleActivity extends AppCompatActivity {
         } catch (ClassNotFoundException cnfe) {
             throw new RuntimeException(cnfe);
         } finally {
-            refreshText(Collections.<Point>emptySet());
+            refresh(Collections.<Point>emptySet());
             try {
                 if (input != null) {
                     input.close();
@@ -302,7 +365,7 @@ public class PuzzleActivity extends AppCompatActivity {
             }
         }
 
-        refreshText(Collections.<Point>emptySet());
+        refresh(Collections.<Point>emptySet());
     }
 
     public void updateValue(View view) {
@@ -316,7 +379,7 @@ public class PuzzleActivity extends AppCompatActivity {
                 rewardTheMonkey();
             }
         }
-        refreshText(errors);
+        refresh(errors);
     }
 
     private void rewardTheMonkey() {
