@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.sudoku.model.ClasspathFilePuzzleFactory;
@@ -224,6 +223,11 @@ public class PuzzleActivity extends AppCompatActivity {
 
     private void refreshEasyModeButtons() {
         setContentView(R.layout.activity_puzzle);
+        if (currentX == -1 && currentY == -1) {
+            //No cell has been selected
+            return;
+        }
+
         int currentValue = puzzle.getCell(currentX, currentY);
 
         for (int value : new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9}) {
