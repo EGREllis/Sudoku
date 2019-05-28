@@ -14,4 +14,7 @@
     <string name="Assisted_mode">Easy mode</string>
     <string name="Assisted_mode_on">Easy mode enabled</string>
     <string name="Assisted_mode_off">Easy mode disabled</string>
+    <string name="Empty"></string>
+    <string name="Introduction">To complete your sudoku, click a square...</string>
+    <string name="Digits">...then click your digit.</string>
 </resources>

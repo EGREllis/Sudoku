@@ -365,6 +365,10 @@ public class PuzzleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_puzzle);
 
         int newValue = Integer.valueOf( ((TextView)view).getText().toString() );
+        if (currentX == -1 || currentY == -1) {
+            // No cell selected
+            return;
+        }
         Set<Point> errors = puzzle.setCell(currentX, currentY, newValue);
         if (errors.size() == 0) {
             history.add(new Entry (new Point(currentX, currentY), newValue));

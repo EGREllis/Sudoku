@@ -19,6 +19,19 @@
 
         <TableRow
             android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Introduction"
+                android:layout_span="9"
+                android:layout_gravity="center"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TableLayout
@@ -1108,12 +1121,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Digits"
+                android:layout_gravity="center"
+                android:layout_span="9"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
                     <TextView
                         android:id="@+id/sudokuDigit1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:onClick="updateValue"
+                        android:layout_span="3"
+                        android:layout_gravity="center"
                         android:text="1" />
 
                     <TextView
@@ -1122,6 +1150,8 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:onClick="updateValue"
+                        android:layout_span="3"
+                        android:layout_gravity="center"
                         android:text="2" />
 
                     <TextView
@@ -1130,56 +1160,82 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:onClick="updateValue"
+                        android:layout_span="3"
+                        android:layout_gravity="center"
                         android:text="3" />
 
-                    <TextView
-                        android:id="@+id/sudokuDigit4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:onClick="updateValue"
-                        android:text="4" />
+        </TableRow>
 
-                    <TextView
-                        android:id="@+id/sudokuDigit5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:onClick="updateValue"
-                        android:text="5" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
 
-                    <TextView
-                        android:id="@+id/sudokuDigit6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:onClick="updateValue"
-                        android:text="6" />
+            <TextView
+                android:id="@+id/sudokuDigit4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:onClick="updateValue"
+                android:layout_span="3"
+                android:layout_gravity="center"
+                android:text="4" />
 
-                    <TextView
-                        android:id="@+id/sudokuDigit7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:onClick="updateValue"
-                        android:text="7" />
+            <TextView
+                android:id="@+id/sudokuDigit5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:onClick="updateValue"
+                android:layout_span="3"
+                android:layout_gravity="center"
+                android:text="5" />
 
-                    <TextView
-                        android:id="@+id/sudokuDigit8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:onClick="updateValue"
-                        android:text="8" />
+            <TextView
+                android:id="@+id/sudokuDigit6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:onClick="updateValue"
+                android:layout_span="3"
+                android:layout_gravity="center"
+                android:text="6" />
+        </TableRow>
 
-                    <TextView
-                        android:id="@+id/sudokuDigit9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:onClick="updateValue"
-                        android:text="9" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="227dp"
+            tools:layout_editor_absoluteY="262dp">
 
+            <TextView
+                android:id="@+id/sudokuDigit7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:onClick="updateValue"
+                android:layout_span="3"
+                android:layout_gravity="center"
+                android:text="7" />
+
+            <TextView
+                android:id="@+id/sudokuDigit8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:onClick="updateValue"
+                android:layout_span="3"
+                android:layout_gravity="center"
+                android:text="8" />
+
+            <TextView
+                android:id="@+id/sudokuDigit9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:onClick="updateValue"
+                android:layout_span="3"
+                android:layout_gravity="center"
+                android:text="9" />
         </TableRow>
 
         <TableRow
@@ -1192,7 +1248,10 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_span="9"
-                android:text="@string/Mission_statement" />
+                android:layout_gravity="center"
+                android:text="@string/Empty" />
         </TableRow>
+
     </TableLayout>
+
 </android.support.constraint.ConstraintLayout>
