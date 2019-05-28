@@ -4,6 +4,7 @@ package com.example.sudoku;
 public class Colours {
     public static final int CELEBRATE_TEXT = 0xFF00FF00;
     public static final int ORIGINAL_TEXT = 0xFF000000;
+    public static final int DISABLED_TEXT = 0xFFF0F0F0;
     public static final int CONFLICT_TEXT = 0xFFFF0000;
     public static final int HIGHLIGHT = 0xFF0000FF;
 }

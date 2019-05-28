@@ -16,12 +16,17 @@ import java.util.Map;
 import java.util.Set;
 
 public class Puzzle implements Parcelable, Serializable {
+    private static final int[] VALUES = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9};
     public static final int SUDOKU_SIZE = 9;        // A little messy - be careful if you mess with this
     private static final int SUDOKU_SQUARES = 3;
     private static final int VALIDATION_TYPES = 3;
     private int data[][];
     private boolean original[][];
     private List<SetValidator> validators;
+
+    public int[] getValues() {
+        return VALUES;
+    }
 
     /* There is a really long class comment on android.os.Parcel that describes why that class
      * is not intended to serialise objects even though it can flatten and unflatten them.

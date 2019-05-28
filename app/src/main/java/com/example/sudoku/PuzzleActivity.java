@@ -22,7 +22,6 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -195,17 +194,7 @@ public class PuzzleActivity extends AppCompatActivity {
         if (easyMode) {
             refreshEasyModeButtons();
         }
-        refreshEasyModeText();
         refreshText(conflictPoints);
-    }
-
-    private void refreshEasyModeText() {
-        TextView easyModeText = findViewById(R.id.easyModeView);
-        if (easyMode) {
-            easyModeText.setText(getText(R.string.Assisted_mode_on));
-        } else {
-            easyModeText.setText(getText(R.string.Assisted_mode_off));
-        }
     }
 
     private void refreshText(Set<Point> conflictPoints) {
@@ -230,11 +219,11 @@ public class PuzzleActivity extends AppCompatActivity {
 
         int currentValue = puzzle.getCell(currentX, currentY);
 
-        for (int value : new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9}) {
+        for (int value : puzzle.getValues()) {
             TextView textView = findViewById(buttonId.get(value));
             if (puzzle.setCell(currentX, currentY, value).size() > 0) {
                 textView.setOnClickListener(null);
-                textView.setTextColor(Colours.CONFLICT_TEXT);
+                textView.setTextColor(Colours.DISABLED_TEXT);
             } else {
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
